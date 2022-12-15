@@ -11,7 +11,7 @@ const { HotelRoute } = require("./routes/hotel.route");
 const {bannnedUserRoute}=require("./routes/banneduser.route")
 const {userRoute}=require("./routes/user.route")
 
-// app.use(express.json());
+app.use(express.json());
 app.use(cors({
   origin:"*"
 }))
