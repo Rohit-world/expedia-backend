@@ -16,10 +16,11 @@ res.status(404).send({"msg":"something went wrong"})
     }
 })
 userRoute.post("/signup", signupcheck,banneduserCheck, async (req, res) => {
-  const { email, password} = req.body;
+  const { email, password,name} = req.body;
   console.log(req.body);
   const hashedPass = await bcrypt.hash(password, 6);
-  const newUser = new UserModel({ email, password: hashedPass, });
+  const newUser = new UserModel({ email, password: hashedPass, 
+  name});
   await newUser.save();
   res.status(201).send({ msg: "User created successfull" });
 });
