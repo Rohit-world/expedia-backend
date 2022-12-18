@@ -35,4 +35,18 @@ res.status(200).send({"msg":"Hotel added successfully"})
   res.send(401).send({"msg":"something went wrong"})
 }
 })
+
+HotelRoute.delete("/:hotelID", async (req, res) => {
+  const hotelID = req.params.userID;
+  try {
+    await HotelModel.findByIdAndDelete(hotelID);
+    res.status(200).send({"msg":"Hotel Deleted successfully"});
+  } catch (err) {
+    console.log(err);
+    res.status(404).send({ msg: "error" });
+  }
+});
+
+
+
 module.exports = { HotelRoute };
