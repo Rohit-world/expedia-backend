@@ -3,8 +3,10 @@ const HotelRoute = express.Router();
 const { HotelModel } = require("../models/hotel.model");
 
 HotelRoute.get("/", async (req, res) => {
+  const {sort}=req.query
+  console.log(sort)
   try {
-    const Hotels = await HotelModel.find();
+    const Hotels = await HotelModel.find().sort({hotelFees:sort})
     res.status(200).send(Hotels);
   } catch (err) {
     res.status(404).send({ msg: "NOT FOUND" });
@@ -37,9 +39,10 @@ res.status(200).send({"msg":"Hotel added successfully"})
 })
 
 HotelRoute.delete("/:hotelID", async (req, res) => {
-  const hotelID = req.params.userID;
+  const hotelID = req.params.hotelID;
+  console.log(hotelID)
   try {
-    await HotelModel.findByIdAndDelete(hotelID);
+    await HotelModel.findByIdAndRemove(hotelID);
     res.status(200).send({"msg":"Hotel Deleted successfully"});
   } catch (err) {
     console.log(err);
