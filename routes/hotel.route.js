@@ -50,6 +50,4 @@ HotelRoute.delete("/:hotelID", async (req, res) => {
   }
 });
 
-
-
 module.exports = { HotelRoute };
